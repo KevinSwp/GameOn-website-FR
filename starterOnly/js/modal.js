@@ -21,7 +21,7 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-//Close modal
+// function close modal
 function closeModal() {
   modalBground.style.display = "none";
 }

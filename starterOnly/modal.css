@@ -208,6 +208,18 @@ input {
   font-size: 20px;
   height: 48px;
 }
+
+.formData .border-red{
+  border: 1.5px solid red;
+}
+
+.formData .text-red{
+  font-size: 0.7rem;
+  color: red;
+  font-weight: lighter;
+  margin-bottom: -14px;
+}
+
 .formData[data-error]::after {
   content: attr(data-error);
   font-size: 0.4em;
