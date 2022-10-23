@@ -1,9 +1,11 @@
-//Minimum age
+//################## Minimum age ##################
 const minAge = 13;
+
 //################## Message if errors ##################
 const messageName = "2 caractères minimum. Chiffre, espace inutile, caractère spécial non autorisé. ";
 const messageEmail = "Adresse E-mail invalide (exemple@yahoo.com).";
-const messageBirthday = "Veuillez saisir une date valide et avoir minimum 13 ans";
+const messageBirthday = "Veuillez saisir une date valide et avoir minimum 13 ans.";
+const tournamentMessage = "Veuillez saisir un nombre (max.99).";
 
 //################## DOM Elements ##################
 // First name
@@ -18,17 +20,20 @@ const emailError = document.querySelector("#email + p");
 // Birthdate
 const birthdate = document.getElementById("birthdate");
 const birthdateError = document.querySelector("#birthdate + p");
+//tournament
+const tournamentQuantity = document.getElementById("quantity");
+const tournamentQuantityError = document.querySelector("#quantity + p");
 
 //################## Ckeckers ##################
 // Check if name has minimum 2 characters, whithout number, without useless space and special character.
-const isValidName = (name) => {
+const validName = (name) => {
     const regex = /^[a-zA-Z]+[a-zA-Z -]*[a-zA-Z]$/;
   
     return regex.test(name);
 };
 
 // Check birthdate
-const isValidBirthdate = (birthdate) => {
+const validBirthdate = (birthdate) => {
     const date = new Date(birthdate);
     const now = Date.now();
     const ONE_YEAR_IN_MILLISECONDS = 365.25 * 24 * 60 * 60 * 1000;
@@ -37,10 +42,15 @@ const isValidBirthdate = (birthdate) => {
     return age >= minAge;
 };
 
+// Check quantity
+const validQuantity = () => {
+    return ((tournamentQuantity.value) >= 0 && (tournamentQuantity.value) <= 99);
+};
+
 // ################## Add/remove error message ##################
 // Add/remove error message of first name/last name
 const nameValidity = (inputField, errorField) => {
-    if (isValidName(inputField.value)) {
+    if (validName(inputField.value)) {
         inputField.classList.remove("border-red");
 
         errorField.textContent = "";
@@ -72,7 +82,7 @@ const emailValidity = (emailField, errorField) => {
 
 // Add/remove error message of birthdate
 const birthdateValidity = (birthdateField, errorField) => {
-    if (isValidBirthdate(birthdateField.value)) {
+    if (validBirthdate(birthdateField.value)) {
       birthdateField.classList.remove("border-red");
   
       errorField.textContent = "";
@@ -81,6 +91,21 @@ const birthdateValidity = (birthdateField, errorField) => {
       birthdateField.classList.add("border-red");
   
       errorField.textContent = messageBirthday;
+      errorField.classList.add("text-red");
+    }
+};
+
+// Add/remove error message of tournament
+const quantityValidity = (quantityField, errorField) => {
+    if (validQuantity(tournamentQuantity.value)) {
+      quantityField.classList.remove("border-red");
+  
+      errorField.textContent = "";
+      errorField.classList.remove("text-red");
+    } else {
+        quantityField.classList.add("border-red");
+  
+      errorField.textContent = tournamentMessage;
       errorField.classList.add("text-red");
     }
 };
@@ -116,4 +141,13 @@ birthdate.oninput = () => {
   };
 birthdate.addEventListener = () => {
     birthdateValidity(birthdate, birthdateError);
+};
+
+// Check tournament validity
+tournamentQuantity.addEventListener = () => {
+    quantityValidity(tournamentQuantity,tournamentQuantityError);
+};
+
+tournamentQuantity.onchange = () => {
+    quantityValidity(tournamentQuantity,tournamentQuantityError);
 };
