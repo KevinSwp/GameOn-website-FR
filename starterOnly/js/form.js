@@ -2,10 +2,11 @@
 const minAge = 13;
 
 //################## Message if errors ##################
-const messageName = "2 caractères minimum. Chiffre, espace inutile, caractère spécial non autorisé. ";
+const messageName = "2 caractères minimum. Chiffre, espace, caractère spécial non autorisé. ";
 const messageEmail = "Adresse E-mail invalide (exemple@yahoo.com).";
 const messageBirthday = "Veuillez saisir une date valide et avoir minimum 13 ans.";
 const tournamentMessage = "Veuillez saisir un nombre (max.99).";
+const cityMessage = "Veuillez indiquer une ville";
 
 //################## DOM Elements ##################
 // First name
@@ -25,19 +26,26 @@ const tournamentQuantity = document.getElementById("quantity");
 const tournamentQuantityError = document.querySelector("#quantity + p");
 
 //################## Ckeckers ##################
-// Check if name has minimum 2 characters, whithout number, without useless space and special character.
+// Check if the name has minimum 2 characters, whithout number, without space and special character.
 const validName = (name) => {
-    const regex = /^[a-zA-Z]+[a-zA-Z -]*[a-zA-Z]$/;
+    const regex = /^[a-zA-Z]+[a-zA-Z-]*[a-zA-Z]$/;
   
     return regex.test(name);
+};
+
+// Ckeck email
+const validEmail = (email) => {
+    const regex = /^[a-z0-9]+[a-z0-9_-]+@[a-z]+\.[a-z]{2,3}$/;
+  
+    return regex.test(email);
 };
 
 // Check birthdate
 const validBirthdate = (birthdate) => {
     const date = new Date(birthdate);
     const now = Date.now();
-    const ONE_YEAR_IN_MILLISECONDS = 365.25 * 24 * 60 * 60 * 1000;
-    const age = (now - date) / ONE_YEAR_IN_MILLISECONDS;
+    const yearMilliseconds = 365.25 * 24 * 60 * 60 * 1000;
+    const age = (now - date) / yearMilliseconds;
 
     return age >= minAge;
 };
@@ -66,7 +74,7 @@ const nameValidity = (inputField, errorField) => {
 
 // Add/remove error message of email
 const emailValidity = (emailField, errorField) => {
-    if (email.validity.valid) {
+    if (validEmail(emailField.value)) {
       emailField.classList.remove("border-red");
   
       errorField.textContent = "";
@@ -132,7 +140,7 @@ email.oninput = () => {
     emailValidity(email, emailError);
   };
 email.addEventListener = () => {
-emailValidity(email, emailError);
+    emailValidity(email, emailError);
 };
 
 // Check birthdate validity:

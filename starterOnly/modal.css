@@ -99,6 +99,52 @@ img {
     display: block;
     margin-top: -15px;
   }
+
+  main {
+    text-align: left !important;
+  }
+
+  .content {
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .topnav {
+    overflow: visible;
+  }
+
+  .topnav a.icon {
+    margin-top: -10px;
+  }
+
+  .topnav.responsive .icon {
+    top: 0px;
+  }
+
+  .main-navbar {
+    background-color: white;
+    z-index: 1000;
+  }
+
+  .header-logo img{
+    width: 60%;
+  }
+
+  .hero-content {
+    padding: 0px !important;
+  }
+
+  .hero-headline {
+    font-size: 2rem !important;
+  }
+  
+  .hero-text {
+    width: 80% !important;
+    font-size: 0.8rem !important;
+    margin-top: 20px !important;
+  }
+
 } 
 
 main {
