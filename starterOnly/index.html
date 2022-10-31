@@ -50,6 +50,7 @@
           <span class="close" id="close-icon"></span>
           <div class="modal-body">
             <form
+              id="modal-form"
               name="reserve"
               action="index.html"
               method="get"
@@ -64,6 +65,7 @@
                   id="first"
                   name="first"
                   minlength="2"
+                  maxlength="20"
                 /><p></p><br>
               </div>
               <div
@@ -74,6 +76,8 @@
                   type="text"
                   id="last"
                   name="last"
+                  minlength="2"
+                  maxlength="20"
                 /><p></p><br>
               </div>
               <div
@@ -84,6 +88,8 @@
                   type="email"
                   id="email"
                   name="email"
+                  minlength="2"
+                  maxlength="50"
                 /><p></p><br>
               </div>
               <div
@@ -111,7 +117,7 @@
                   id="location1"
                   name="location"
                   value="New York"
-                /><p></p>
+                />
                 <label class="checkbox-label" for="location1">
                   <span class="checkbox-icon"></span>
                   New York</label
@@ -175,12 +181,8 @@
 
               <div
                 class="formData">
-                <input
-                  class="checkbox-input"
-                  type="checkbox"
-                  id="checkbox1"
-                  checked
-                />
+                <input class="checkbox-input" type="checkbox" id="checkbox1"/>
+                <p class="cityLocation"></p>
                 <label class="checkbox2-label" for="checkbox1" required>
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
@@ -194,6 +196,7 @@
                 <br>
               </div>
               <input
+                id="btn"
                 class="btn-submit"
                 type="submit"
                 class="button"

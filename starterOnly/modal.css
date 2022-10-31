@@ -19,6 +19,7 @@ body {
   font-size: 18px;
   max-width: 1300px;
   margin: 0 auto;
+  padding-top: 10px;
 }
 
 p {
@@ -91,7 +92,11 @@ img {
 }
 
 
-
+/*
+=====================================================================
+                          MOBILE VERSION
+=====================================================================
+*/
  @media screen and (max-width: 540px) {
   .topnav a {display: none;}
   .topnav a.icon {
@@ -102,6 +107,18 @@ img {
 
   main {
     text-align: left !important;
+  }
+
+  .cityLocation {
+    margin-bottom: 10px !important;
+  }
+
+  .copyrights {
+    margin-top: 20px !important;
+  }
+
+  .hero-section {
+    min-height: auto !important;
   }
 
   .content {
@@ -116,6 +133,8 @@ img {
 
   .topnav a.icon {
     margin-top: -10px;
+    color: #fe142f;
+    background-color: transparent;
   }
 
   .topnav.responsive .icon {
@@ -212,11 +231,11 @@ main {
   height: 100%;
   width: 100%;
   overflow: auto;
-  background-color: rgba(26, 39, 156, 0.4);
+  /* background-color: rgba(26, 39, 156, 0.4); */
 }
 
 .content {
-  margin: 5% auto;
+  margin: 20% auto;
   width: 100%;
   max-width: 500px;
   animation-name: modalopen;
@@ -256,11 +275,11 @@ input {
 }
 
 .formData .border-red{
-  border: 1.5px solid red;
+  border: 2px solid red;
 }
 
 .formData .text-red{
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: red;
   font-weight: lighter;
   margin-bottom: -14px;
