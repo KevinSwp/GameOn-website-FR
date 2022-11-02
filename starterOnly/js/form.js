@@ -5,8 +5,9 @@ const minAge = 13;
 const messageName = "2 lettres minimum. Chiffre, espace, caractère spécial non autorisé. ";
 const messageEmail = "Adresse E-mail invalide (exemple@yahoo.com).";
 const messageBirthday = "Veuillez saisir une date valide (age min. 13 ans).";
-const tournamentMessage = "Veuillez saisir un nombre (max.99).";
-const cityMessage = "Veuillez indiquer une ville";
+const messageTournament = "Veuillez saisir un nombre (max.99).";
+const messageCity = "Veuillez indiquer une ville";
+const messageGeneralCondition = "Veuillez accepter les conditions d'utilisation"
 
 //################## DOM ELEMENTS ##################
 // First name
@@ -26,7 +27,10 @@ const tournamentQuantity = document.getElementById("quantity");
 const tournamentQuantityError = document.querySelector("#quantity + p");
 // City
 const locationRadio = document.querySelectorAll("input[name='location']");
-const locationError = document.querySelector("#checkbox1 + p");
+const locationError = document.getElementById("cityLocation");
+// General condition
+const generalCondition = document.querySelectorAll("input[name='CG']");
+const generalConditionError = document.getElementById("CG");
 
 //################## CHECKERS ##################
 // Check if the name has minimum 2 characters, whithout number, without space and special character.
@@ -62,23 +66,20 @@ const validQuantity = () => {
     );
 };
 
-// Check radio
-const validRadio = () => {
-    document.querySelector("input[name='location']:checked");
-} 
-
-// Check form
-// const validForm = () => {
-//     return (
-//         validName(firstName.value) &&
-//         validName(lastName.value) &&
-//         validEmail(email.value) &&
-//         validBirthdate(birthdate.value) &&
-//         validQuantity(tournamentQuantity.value) &&
-//         validRadio(locationRadio) !== null
-//     );
-// };
-
+/*const isValidForm = () => {
+    const checkedRadioButtons = document.querySelector(
+      "input[name='location']:checked"
+    );
+  
+    return (
+      validName(firstName.value) &&
+      validName(lastName.value) &&
+      validEmail(email.value) &&
+      validBirthdate(birthdate.value) &&
+      validQuantity(tournamentQuantity.value) &&
+      checkedRadioButtons !== null
+    );
+};*/
 // ################## ADD/REMOVE ERRORS MESSAGES ##################
 // Add/remove error message of first name/last name
 const nameValidity = (inputField, errorField) => {
@@ -139,26 +140,51 @@ const quantityValidity = (quantityField, errorField) => {
     else {
         quantityField.classList.add("border-red");
   
-        errorField.textContent = tournamentMessage;
+        errorField.textContent = messageTournament;
         errorField.classList.add("text-red");
     }
 };
 
 // Add/remove error message of location
 const locationValidity = (errorField) => {
-    if (validRadio (errorField)) {
-
+    const checkedRadio = document.querySelector("input[name='location']:checked");
+  
+    if (checkedRadio !== null) {
         errorField.textContent = "";
         errorField.classList.remove("text-red");
     }
     else {
-        errorField.textContent = cityMessage;
+        errorField.textContent = messageCity;
+        errorField.classList.add("text-red");
+    }
+};
+
+// Add/remove error message of general condition
+/*const generalConditionValidity = (CG_field, errorField) => {
+    if (CG_field.checked) {
+        errorField.textContent = "";
+        errorField.classList.remove("text-red");
+    }
+    else {
+        errorField.textContent = messageGeneralCondition;
+        errorField.classList.add("text-red");
+    }
+};*/
+const generalConditionValidity = (errorField) => {
+    const checkedCG = document.querySelector("input[name='CG']:checked");
+  
+    if (checkedCG !== null) {
+        errorField.textContent = "";
+        errorField.classList.remove("text-red");
+    }
+    else {
+        errorField.textContent = messageGeneralCondition;
         errorField.classList.add("text-red");
     }
 };
 
 // ################## CHECK INPUT FIELD ##################
-// Check first name validity
+// Check first name validity oninput
 firstName.oninput = () => {
     nameValidity(firstName, firstNameError);
 };
@@ -166,7 +192,7 @@ firstName.addEventListener = () => {
     nameValidity(firstName, firstNameError);
 };
 
-// Check last name validity
+// Check last name validity oninput
 lastName.oninput = () => {
     nameValidity(lastName, lastNameError);
 };
@@ -174,7 +200,7 @@ lastName.addEventListener = () => {
     nameValidity(lastName, lastNameError);
 };  
 
-// Check email validity:
+// Check email validity oninput
 email.oninput = () => {
     emailValidity(email, emailError);
 };
@@ -182,7 +208,7 @@ email.addEventListener = () => {
     emailValidity(email, emailError);
 };
 
-// Check birthdate validity:
+// Check birthdate validity oninput
 birthdate.oninput = () => {
     birthdateValidity(birthdate, birthdateError);
 };
@@ -190,21 +216,51 @@ birthdate.addEventListener = () => {
     birthdateValidity(birthdate, birthdateError);
 };
 
-// Check tournament validity
+// Check tournament validity oninput
 tournamentQuantity.oninput = () => {
-    quantityValidity(tournamentQuantity,tournamentQuantityError);
+    quantityValidity(tournamentQuantity, tournamentQuantityError);
 };
 tournamentQuantity.addEventListener = () => {
-    quantityValidity(tournamentQuantity,tournamentQuantityError);
+    quantityValidity(tournamentQuantity, tournamentQuantityError);
 };
 
-// Check radio validity
-tournamentQuantity.addEventListener = () => {
-    locationValidity(tournamentQuantityError);
-};
+// Check location validity on selected city
+locationRadio.forEach((btn) =>
+    btn.addEventListener("change", () => {
+        const checkedRadioButtons = document.querySelector("input[name='location']:checked");
+
+        if (checkedRadioButtons !== null) {
+            locationError.textContent = "";
+            locationError.classList.remove("text-red");
+        }
+        else {
+            locationError.textContent = messageCity;
+            locationError.classList.add("text-red");
+        }
+    })
+);
+
+// Check general condition validity on ckecked
+/*generalCondition.onchange = () => {
+    generalConditionValidity(generalCondition, generalConditionError);
+};*/
+generalCondition.forEach((btn) =>
+    btn.addEventListener("change", () => {
+        const checkedCG = document.querySelector("input[name='CG']:checked");
+
+        if (checkedCG !== null) {
+            generalConditionError.textContent = "";
+            generalConditionError.classList.remove("text-red");
+        }
+        else {
+            generalConditionError.textContent = messageGeneralCondition;
+            generalConditionError.classList.add("text-red");
+        }
+    })
+);
 
 // Check form
-const checkForm = document.getElementById("modal-form").onsubmit = (event) => {
+document.getElementById("modal-form").onsubmit = (event) => {
     event.preventDefault();
 
     nameValidity(firstName, firstNameError);
@@ -213,4 +269,5 @@ const checkForm = document.getElementById("modal-form").onsubmit = (event) => {
     birthdateValidity(birthdate, birthdateError);
     quantityValidity(tournamentQuantity, tournamentQuantityError);
     locationValidity(locationError);
+    generalConditionValidity (generalConditionError);
 };
