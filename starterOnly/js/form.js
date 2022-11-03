@@ -29,7 +29,7 @@ const tournamentQuantityError = document.querySelector("#quantity + p");
 const locationRadio = document.querySelectorAll("input[name='location']");
 const locationError = document.getElementById("cityLocation");
 // General condition
-const generalCondition = document.querySelectorAll("input[name='CG']");
+const generalCondition = document.querySelector("input[name='CG']");
 const generalConditionError = document.getElementById("CG");
 
 //################## CHECKERS ##################
@@ -71,15 +71,15 @@ function validForm() {
     const checkedRadio = document.querySelector(
         "input[name='location']:checked"
       );
-    
+
     return (
     validName(firstName.value) &&
     validName(lastName.value) &&
     validEmail(email.value) &&
     validBirthdate(birthdate.value) &&
     validQuantity(tournamentQuantity.value) &&
-    checkedRadio !== null &&
-    generalCondition.ckecked
+    (checkedRadio !== null) &&
+    generalCondition.checked
     );
 }
 
@@ -240,8 +240,8 @@ locationRadio.forEach((btn) =>
 );
 
 // Check general condition validity on ckecked
-generalCondition.forEach((btn) =>
-    btn.addEventListener("change", () => {
+//generalCondition.forEach((btn) =>
+    generalCondition.addEventListener("change", () => {
         const checkedCG = document.querySelector("input[name='CG']:checked");
 
         if (checkedCG !== null) {
@@ -253,7 +253,7 @@ generalCondition.forEach((btn) =>
             generalConditionError.classList.add("text-red");
         }
     })
-);
+//);
 
 // ################## REMOVE ALL ERRORS ##################
 /*function removeAllErrors() {

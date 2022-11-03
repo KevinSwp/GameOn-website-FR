@@ -91,6 +91,17 @@ img {
   }
 }
 
+.cityLocation {
+  margin-bottom: 0.5rem !important;
+}
+
+.CG {
+  margin-bottom: -3rem;
+}
+
+.topnav a.icon {
+  color: #fe142f;
+}
 
 /*
 =====================================================================
@@ -108,6 +119,10 @@ img {
   main {
     text-align: left !important;
   }
+
+  .modal-body-success {
+    height: 650px !important;
+}
 
   .cityLocation {
     margin-bottom: 10px !important;
@@ -261,7 +276,7 @@ main {
 .modal-body-success {
   display: none;
   font-size: 2rem;
-  height: 100vh;
+  height: 750px;
   padding-top: 12rem;
   text-align: center;
 }
