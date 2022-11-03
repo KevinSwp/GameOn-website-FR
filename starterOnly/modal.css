@@ -54,7 +54,7 @@ img {
 }
 
 .topnav a:hover {
-  background-color: #ff0000;
+  /* background-color: #ff0000; */
   color: #ffffff;
   border-radius: 15px;
 }
@@ -83,6 +83,7 @@ img {
     position: absolute;
     right: 0;
     top: 0;
+    color: white;
   }
   .topnav.responsive a {
     float: none;
@@ -115,6 +116,10 @@ img {
     display: block;
     margin-top: -15px;
   }
+
+  .content {
+    margin: 20% auto !important;
+  }  
 
   main {
     text-align: left !important;
@@ -158,6 +163,7 @@ img {
 
   .topnav.responsive .icon {
     top: 0px;
+    color: #fe142f;
   }
 
   .main-navbar {
@@ -254,7 +260,7 @@ main {
 }
 
 .content {
-  margin: 20% auto;
+  margin: 10% auto;
   width: 100%;
   max-width: 500px;
   animation-name: modalopen;
@@ -435,6 +441,7 @@ input[data-error]::after {
   background: #fe142f;
   display: block;
   margin: 0 auto;
+  margin-top: 1rem;
   border-radius: 7px;
   font-size: 1rem;
   padding: 12px 82px;
