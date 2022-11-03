@@ -66,8 +66,8 @@ const validQuantity = () => {
     );
 };
 
-/*const isValidForm = () => {
-    const checkedRadioButtons = document.querySelector(
+const validForm = () => {
+    const checkedRadio = document.querySelector(
       "input[name='location']:checked"
     );
   
@@ -77,9 +77,10 @@ const validQuantity = () => {
       validEmail(email.value) &&
       validBirthdate(birthdate.value) &&
       validQuantity(tournamentQuantity.value) &&
-      checkedRadioButtons !== null
+      checkedRadio !== null &&
+      generalCondition.ckecked
     );
-};*/
+};
 // ################## ADD/REMOVE ERRORS MESSAGES ##################
 // Add/remove error message of first name/last name
 const nameValidity = (inputField, errorField) => {
@@ -160,16 +161,6 @@ const locationValidity = (errorField) => {
 };
 
 // Add/remove error message of general condition
-/*const generalConditionValidity = (CG_field, errorField) => {
-    if (CG_field.checked) {
-        errorField.textContent = "";
-        errorField.classList.remove("text-red");
-    }
-    else {
-        errorField.textContent = messageGeneralCondition;
-        errorField.classList.add("text-red");
-    }
-};*/
 const generalConditionValidity = (errorField) => {
     const checkedCG = document.querySelector("input[name='CG']:checked");
   
@@ -182,6 +173,17 @@ const generalConditionValidity = (errorField) => {
         errorField.classList.add("text-red");
     }
 };
+
+// ################## DISPLAY SUCCESS MESSAGE SIGNIN ##################
+const displaySuccessfullSignin = () => {
+    document.getElementById("modalInscriptionForm").style.display = "none";
+    document.getElementById("modalSuccessInscription").style.display = "block";
+};
+
+/*function displaySuccessfullSignin() {
+    document.getElementById("modalInscriptionForm").style.display = "none";
+    document.getElementById("modalSuccessInscription").style.display = "block";
+}*/
 
 // ################## CHECK INPUT FIELD ##################
 // Check first name validity oninput
@@ -241,9 +243,6 @@ locationRadio.forEach((btn) =>
 );
 
 // Check general condition validity on ckecked
-/*generalCondition.onchange = () => {
-    generalConditionValidity(generalCondition, generalConditionError);
-};*/
 generalCondition.forEach((btn) =>
     btn.addEventListener("change", () => {
         const checkedCG = document.querySelector("input[name='CG']:checked");
@@ -259,7 +258,7 @@ generalCondition.forEach((btn) =>
     })
 );
 
-// Check form
+// ################## CHECK FORM ##################
 document.getElementById("modal-form").onsubmit = (event) => {
     event.preventDefault();
 
@@ -270,4 +269,8 @@ document.getElementById("modal-form").onsubmit = (event) => {
     quantityValidity(tournamentQuantity, tournamentQuantityError);
     locationValidity(locationError);
     generalConditionValidity (generalConditionError);
+
+    if (validForm()) {
+        displaySuccessfullSignin();
+    }
 };

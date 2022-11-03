@@ -48,7 +48,7 @@
       <div class="bground" id="bground">
         <div class="content" id="content">
           <span class="close" id="close-icon"></span>
-          <div class="modal-body">
+          <div id="modalInscriptionForm" class="modal-body">
             <form
               id="modal-form"
               name="reserve"
@@ -200,8 +200,20 @@
                 type="submit"
                 class="button"
                 value="C'est parti"
+                {#onclick="displaySuccessfullSignin()"#}
               />
             </form>
+          
+          </div>
+          <div id="modalSuccessInscription" class="modal-body-success">
+            <p class="successMessage">Merci pour <br> votre inscription</p>
+            <input
+                id="btn"
+                class="btn-submit"
+                type="submit"
+                class="button"
+                value="Fermer"
+              />
           </div>
         </div>
       </div>
