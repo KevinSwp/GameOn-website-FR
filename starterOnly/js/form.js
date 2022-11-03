@@ -34,56 +34,58 @@ const generalConditionError = document.getElementById("CG");
 
 //################## CHECKERS ##################
 // Check if the name has minimum 2 characters, whithout number, without space and special character.
-const validName = (name) => {
+function validName(name) {
     const regex = /^[a-zA-Z]+[a-zA-Z-]*[a-zA-Z]$/;
   
     return regex.test(name);
-};
+}
 
 // Ckeck email
-const validEmail = (email) => {
+function validEmail(email) {
     const regex = /^[a-z0-9]+[a-z0-9_-]+@[a-z]+\.[a-z]{2,3}$/;
   
     return regex.test(email);
-};
+}
 
 // Check birthdate
-const validBirthdate = (birthdate) => {
+function validBirthdate(birthdate) {
     const date = new Date(birthdate);
     const now = Date.now();
     const yearMilliseconds = 365 * 24 * 60 * 60 * 1000;
     const age = (now - date) / yearMilliseconds;
 
     return age >= minAge;
-};
+}
 
 // Check quantity
-const validQuantity = () => {
+function validQuantity() {
     return (
         (tournamentQuantity.value) >= 0 &&
         (tournamentQuantity.value) <= 99 &&
         (tournamentQuantity.value) !== ""
     );
-};
+}
 
-const validForm = () => {
+// Check form
+function validForm() {
     const checkedRadio = document.querySelector(
-      "input[name='location']:checked"
-    );
-  
+        "input[name='location']:checked"
+      );
+    
     return (
-      validName(firstName.value) &&
-      validName(lastName.value) &&
-      validEmail(email.value) &&
-      validBirthdate(birthdate.value) &&
-      validQuantity(tournamentQuantity.value) &&
-      checkedRadio !== null &&
-      generalCondition.ckecked
+    validName(firstName.value) &&
+    validName(lastName.value) &&
+    validEmail(email.value) &&
+    validBirthdate(birthdate.value) &&
+    validQuantity(tournamentQuantity.value) &&
+    checkedRadio !== null &&
+    generalCondition.ckecked
     );
-};
+}
+
 // ################## ADD/REMOVE ERRORS MESSAGES ##################
 // Add/remove error message of first name/last name
-const nameValidity = (inputField, errorField) => {
+function nameValidity(inputField, errorField) {
     if (validName(inputField.value)) {
         inputField.classList.remove("border-red");
 
@@ -96,10 +98,10 @@ const nameValidity = (inputField, errorField) => {
         errorField.textContent = messageName;
         errorField.classList.add("text-red");
     }
-};
+}
 
 // Add/remove error message of email
-const emailValidity = (emailField, errorField) => {
+function emailValidity(emailField, errorField) {
     if (validEmail(emailField.value)) {
         emailField.classList.remove("border-red");
     
@@ -112,10 +114,10 @@ const emailValidity = (emailField, errorField) => {
         errorField.textContent = messageEmail;
         errorField.classList.add("text-red");
     }
-};
+}
 
 // Add/remove error message of birthdate
-const birthdateValidity = (birthdateField, errorField) => {
+function birthdateValidity(birthdateField, errorField) {
     if (validBirthdate(birthdateField.value)) {
         birthdateField.classList.remove("border-red");
     
@@ -128,10 +130,10 @@ const birthdateValidity = (birthdateField, errorField) => {
         errorField.textContent = messageBirthday;
         errorField.classList.add("text-red");
     }
-};
+}
 
 // Add/remove error message of tournament
-const quantityValidity = (quantityField, errorField) => {
+function quantityValidity(quantityField, errorField) {
     if (validQuantity(quantityField.value)) {
         quantityField.classList.remove("border-red");
     
@@ -144,10 +146,10 @@ const quantityValidity = (quantityField, errorField) => {
         errorField.textContent = messageTournament;
         errorField.classList.add("text-red");
     }
-};
+}
 
 // Add/remove error message of location
-const locationValidity = (errorField) => {
+function locationValidity(errorField) {
     const checkedRadio = document.querySelector("input[name='location']:checked");
   
     if (checkedRadio !== null) {
@@ -158,10 +160,10 @@ const locationValidity = (errorField) => {
         errorField.textContent = messageCity;
         errorField.classList.add("text-red");
     }
-};
+}
 
 // Add/remove error message of general condition
-const generalConditionValidity = (errorField) => {
+function generalConditionValidity(errorField) {
     const checkedCG = document.querySelector("input[name='CG']:checked");
   
     if (checkedCG !== null) {
@@ -172,18 +174,13 @@ const generalConditionValidity = (errorField) => {
         errorField.textContent = messageGeneralCondition;
         errorField.classList.add("text-red");
     }
-};
+}
 
 // ################## DISPLAY SUCCESS MESSAGE SIGNIN ##################
-const displaySuccessfullSignin = () => {
+function displaySuccessfullSignin() {
     document.getElementById("modalInscriptionForm").style.display = "none";
     document.getElementById("modalSuccessInscription").style.display = "block";
-};
-
-/*function displaySuccessfullSignin() {
-    document.getElementById("modalInscriptionForm").style.display = "none";
-    document.getElementById("modalSuccessInscription").style.display = "block";
-}*/
+}
 
 // ################## CHECK INPUT FIELD ##################
 // Check first name validity oninput
@@ -258,7 +255,31 @@ generalCondition.forEach((btn) =>
     })
 );
 
-// ################## CHECK FORM ##################
+// ################## REMOVE ALL ERRORS ##################
+/*function removeAllErrors() {
+    const errorFields = [
+        firstNameError,
+        lastNameError,
+        emailError,
+        birthdateError,
+        tournamentQuantityError,
+        locationError,
+        generalConditionError,
+    ];
+    
+    const inputFields = document.querySelectorAll("input");
+  
+    for (const errorField of errorFields) {
+        errorField.textContent = "";
+        errorField.classList.remove("text-red");
+    }
+  
+    for (let inputField of inputFields) {
+        inputField.classList.remove("border-red");
+    }
+}*/
+
+// ################## CHECK FORM BEFORE SUBMIT ##################
 document.getElementById("modal-form").onsubmit = (event) => {
     event.preventDefault();
 
