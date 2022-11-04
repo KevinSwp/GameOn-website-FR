@@ -40,7 +40,7 @@ function validName(name) {
     return regex.test(name);
 }
 
-// Ckeck email
+// Check email
 function validEmail(email) {
     const regex = /^[a-z0-9]+[a-z0-9_-]+@[a-z]+\.[a-z]{2,3}$/;
   
@@ -239,51 +239,23 @@ locationRadio.forEach((btn) =>
     })
 );
 
-// Check general condition validity on ckecked
-//generalCondition.forEach((btn) =>
-    generalCondition.addEventListener("change", () => {
-        const checkedCG = document.querySelector("input[name='CG']:checked");
+// Check general condition validity on checked
+generalCondition.addEventListener("change", () => {
+    const checkedCG = document.querySelector("input[name='CG']:checked");
 
-        if (checkedCG !== null) {
-            generalConditionError.textContent = "";
-            generalConditionError.classList.remove("text-red");
-        }
-        else {
-            generalConditionError.textContent = messageGeneralCondition;
-            generalConditionError.classList.add("text-red");
-        }
-    })
-//);
-
-// ################## REMOVE ALL ERRORS ##################
-function removeAllErrors() {
-    const errorFields = [
-        firstNameError,
-        lastNameError,
-        emailError,
-        birthdateError,
-        tournamentQuantityError,
-        locationError,
-        generalConditionError,
-    ];
-    
-    const inputFields = document.querySelectorAll("input");
-  
-    for (const errorField of errorFields) {
-        errorField.textContent = "";
-        errorField.classList.remove("text-red");
+    if (checkedCG !== null) {
+        generalConditionError.textContent = "";
+        generalConditionError.classList.remove("text-red");
     }
-  
-    for (let inputField of inputFields) {
-        inputField.classList.remove("border-red");
+    else {
+        generalConditionError.textContent = messageGeneralCondition;
+        generalConditionError.classList.add("text-red");
     }
-}
+})
 
 // ################## CHECK FORM BEFORE SUBMIT ##################
 document.getElementById("modal-form").onsubmit = (event) => {
     event.preventDefault();
-
-    removeAllErrors();
 
     nameValidity(firstName, firstNameError);
     nameValidity(lastName, lastNameError);
