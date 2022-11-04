@@ -90,6 +90,10 @@ img {
     display: block;
     text-align: left;
   }
+
+  .topnav.responsive a:hover {
+    background-color: red;
+  }
 }
 
 .cityLocation {
@@ -164,6 +168,10 @@ img {
   .topnav.responsive .icon {
     top: 0px;
     color: #fe142f;
+  }
+
+  .topnav.responsive .icon:hover {
+    background-color: transparent;
   }
 
   .main-navbar {

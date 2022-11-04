@@ -256,7 +256,7 @@ locationRadio.forEach((btn) =>
 //);
 
 // ################## REMOVE ALL ERRORS ##################
-/*function removeAllErrors() {
+function removeAllErrors() {
     const errorFields = [
         firstNameError,
         lastNameError,
@@ -277,11 +277,13 @@ locationRadio.forEach((btn) =>
     for (let inputField of inputFields) {
         inputField.classList.remove("border-red");
     }
-}*/
+}
 
 // ################## CHECK FORM BEFORE SUBMIT ##################
 document.getElementById("modal-form").onsubmit = (event) => {
     event.preventDefault();
+
+    removeAllErrors();
 
     nameValidity(firstName, firstNameError);
     nameValidity(lastName, lastNameError);
