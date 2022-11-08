@@ -1,10 +1,11 @@
-//################## MINIMUM AGE ##################
+//################## MIN/MAX AGE ##################
 const minAge = 13;
+const maxAge = 100;
 
 //################## MESSAGE IF ERRORS ##################
 const messageName = "2 lettres minimum. Chiffre, espace, caractère spécial non autorisé. ";
 const messageEmail = "Adresse E-mail invalide (exemple@yahoo.com).";
-const messageBirthday = "Veuillez saisir une date valide (age min. 13 ans).";
+const messageBirthday = "Veuillez saisir une date valide (age min.13/max.100).";
 const messageTournament = "Veuillez saisir un nombre (max.99).";
 const messageCity = "Veuillez indiquer une ville";
 const messageGeneralCondition = "Veuillez accepter les conditions d'utilisation"
@@ -42,7 +43,7 @@ function validName(name) {
 
 // Check email
 function validEmail(email) {
-    const regex = /^[a-z0-9]+[a-z0-9_-]+@[a-z]+\.[a-z]{2,3}$/;
+    const regex = /^[a-zA-Z0-9]+[a-zA-Z0-9_-]+@[a-z]+\.[a-z]{2,3}$/;
   
     return regex.test(email);
 }
@@ -54,7 +55,9 @@ function validBirthdate(birthdate) {
     const yearMilliseconds = 365 * 24 * 60 * 60 * 1000;
     const age = (now - date) / yearMilliseconds;
 
-    return age >= minAge;
+    if (age >= minAge && age <= maxAge) {
+        return age;
+    }
 }
 
 // Check quantity
@@ -62,7 +65,7 @@ function validQuantity() {
     return (
         (tournamentQuantity.value) >= 0 &&
         (tournamentQuantity.value) <= 99 &&
-        (tournamentQuantity.value) !== ""
+        (tournamentQuantity.value) != ""
     );
 }
 
