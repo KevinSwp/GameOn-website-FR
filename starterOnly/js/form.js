@@ -4,7 +4,7 @@ const maxAge = 100;
 
 //################## MESSAGE IF ERRORS ##################
 const messageName = "2 lettres minimum. Chiffre, espace, caractère spécial non autorisé. ";
-const messageEmail = "Adresse E-mail invalide (exemple@yahoo.com).";
+const messageEmail = "Adresse E-mail invalide (exemple@domain.com).";
 const messageBirthday = "Veuillez saisir une date valide (age min.13/max.100).";
 const messageTournament = "Veuillez saisir un nombre (max.99).";
 const messageCity = "Veuillez indiquer une ville";
@@ -43,7 +43,7 @@ function validName(name) {
 
 // Check email
 function validEmail(email) {
-    const regex = /^[a-zA-Z0-9]+[a-zA-Z0-9_-]+@[a-z]+\.[a-z]{2,3}$/;
+    const regex = /^[a-zA-Z0-9]+[a-zA-Z0-9_-]+@[a-z]+[a-z]+\.[a-z]{2,4}$/;
   
     return regex.test(email);
 }
@@ -256,7 +256,7 @@ generalCondition.addEventListener("change", () => {
     }
 })
 
-// ################## CHECK FORM BEFORE SUBMIT ##################
+// ################## CHECK FORM ON SUBMIT ##################
 document.getElementById("modal-form").onsubmit = (event) => {
     event.preventDefault();
 
