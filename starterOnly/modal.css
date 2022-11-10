@@ -41,6 +41,10 @@ img {
 .main-navbar {
     float: right;
 }
+
+.main-navbar :hover {
+  background-color: red;
+}
 .topnav a {
   float: left;
   display: block;
